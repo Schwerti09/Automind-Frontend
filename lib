@@ -1,0 +1,12 @@
+// src/lib/api.ts
+export async function pingServer(): Promise<string> {
+  try {
+    const res = await fetch('/api/reality-check');
+    if (!res.ok) throw new Error('Server error');
+    const data = await res.json();
+    return `Status: ${data.status}`;
+  } catch (err) {
+    console.error(err);
+    return 'Server nicht erreichbar';
+  }
+}
